@@ -348,7 +348,7 @@ h3{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Arial, sans-serif;
+
 }
 
 /* Corps de la page */
@@ -376,19 +376,20 @@ body {
 }
 
 .contact-info h1 {
-    font-size: 24px;
+    font-size: 32px;
     color: #4a90e2;
 }
 
 .contact-info h2 {
-    font-size: 18px;
+    font-size: 24px;
     color: #4a90e2;
     margin-bottom: 10px;
 }
 
 .contact-info p {
-    font-size: 14px;
+    font-size: 18px;
     margin-bottom: 10px;
+    font-family:"Open_sans"; 
 }
 
 /* Conteneur du formulaire */
@@ -416,7 +417,7 @@ body {
     display: block;
     margin-bottom: 5px;
     font-weight: bold;
-    font-size: 14px;
+    font-size:18px;
 }
 
 .input-group input,
@@ -425,7 +426,7 @@ body {
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
-    font-size: 14px;
+    font-size: 18px;
 }
 
 .input-group textarea {
@@ -438,7 +439,7 @@ body {
     color: #fff;
     border: none;
     padding: 10px 20px;
-    font-size: 16px;
+    font-size: 20px;
     cursor: pointer;
     border-radius: 5px;
     width: 100%;
@@ -496,7 +497,7 @@ body {
     }
 
     .btn-submit {
-        font-size: 14px;
+        font-size:18px;
     }
 }
 
