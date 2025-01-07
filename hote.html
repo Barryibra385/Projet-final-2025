@@ -14,21 +14,30 @@
             <div class="logo">
                 <img src="../Projet_final_2025/img/logo.png" alt="Logo KAIBON">
             </div>
-            <a href="index.html">Accueil</a>
-            <div class="dropdown">
-                <a href="catalogues.html" class="dropdown-toggle">Catalogues</a>
-                <div class="dropdown-menu">
-                    <a href="maisons_duplex.html">Nos maisons et duplex</a>
-                    <a href="appartemapents_villas.html">Nos appartements et villas</a>
-                    <a href="chambres_studios.html">Nos chambres et studios</a>
+            <button class="burger-menu" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <div class="menu">
+                <a href="index.html">Accueil</a>
+                <div class="dropdown">
+                    <a href="catalogues.html" class="dropdown-toggle">Catalogues</a>
+                    <div class="dropdown-menu">
+                        <a href="types_de_biens.html">Nos types de biens</a>
+                        <a href="maisons_duplex.html">Nos maisons et duplex</a>
+                        <a href="appartements_villas.html">Nos appartements et villas</a>
+                        <a href="chambres_studios.html">Nos chambres et studios</a>
+                       
+                    </div>
                 </div>
+                <a href="contact.html">Contact</a>
+                <a href="a_propos.html">À propos</a>
+                <a href="hote.html">Devenez hôte</a>
+                <a href="inscription.html">S'inscrire</a>
+                <a href="connexion.html">Se connecter</a>
+                <a href="reservation.html">Réserver</a>
             </div>
-            <a href="contact.html">Contact</a>
-            <a href="hote.html">Devenez hôte</a>
-            <a href="a_propos.html">À propos</a>
-            <a href="#">S'inscrire</a>
-            <a href="#">Se connecter</a>
-            <a href="#">Réserver</a>
         </nav>
     </header>
 
@@ -48,25 +57,26 @@
             Sur Kaibon, nous vous proposons l'outil adéquat pour vous aider à attirer plus de locateurs 
             en rendant votre bien accessible à des milliers de voyageurs et touristes.  
              vous pouvez enregistrer votre location de vacances, qu’il s’agisse d’une maison, 
-            d’un appartement, d’une chambre, d’un Hôtel ou même d’un camping-car. Grâce aux plateformes de 
-            notre réseau et à nos partenaires, vous pouvez atteindre des millions de voyageurs à destination
-             de la Guinée, dans l’ensemble du réseau Kaibon.<br>
-            Vous recherchez une solution pour gérer votre bien immobilier ou vous souhaitez établir
-             un partenariat avec nous ? <br>
-            Kaibon reste la meilleure solutions de gestion de biens immobiliers sur toute l’étendue du 
-            territoire guinéen, ce qui rend le processus d'adhésion rapide et facile ! 
+            d’un appartement, d’une chambre, d’un Hôtel ou même d’un camping-car. Grâce à note plateforme
+             et à nos partenaires, vous pouvez atteindre des millions de voyageurs à destination
+             de la Guinée, ce qui vous donne une bonne visibilité.
+           
         </h2>
 
     <main class="container">
         <section class="info-section">
             <p>
+                Vous recherchez une solution pour gérer votre bien immobilier ou vous souhaitez établir
+                un partenariat avec nous ? <br>
+               Kaibon reste la meilleure solutions de gestion de biens immobiliers sur toute l’étendue du 
+               territoire guinéen, ce qui rend le processus d'adhésion rapide et facile ! 
                 Nous proposons des outils pour vous connecter à des millions de voyageurs à la 
                 recherche d’une location comme la vôtre
             </p>
         </section>
         <section class="form-section">
             <form class="contact-form">
-                <h2>Vous ne savez pas par où commencer ou vous avez des questions ?</h2>
+                <h3>Vous ne savez pas par où commencer ou vous avez des questions ?</h3>
               <h4>
                     Nous serions ravis de vous aider à démarrer. Communiquez-nous vos coordonnées 
                     et un membre de notre équipe prendra contact avec vous dans les plus brefs délais.
@@ -74,15 +84,15 @@
                 <p>
                     Remplissez ce formulaire et nous reviendrons vers vous dans les plus brefs délais.
                 </p>
-                <div class="form-group">
+                <div class="hoteform-group">
                     <input type="text" placeholder="Nom" required>
                     <input type="text" placeholder="Prénom" required>
                 </div>
                 <input type="email" placeholder="Email" required>
+                <input type="tel" placeholder="Téléphone" required>
                 <input type="text" placeholder="Ville" required>
                 <input type="text" placeholder="Type de bien" required>
                 <textarea placeholder="Description du bien" required></textarea>
-                <input type="tel" placeholder="Téléphone" required>
                 <div class="checkbox-group">
                     <input type="checkbox" required>
                     <label>
@@ -138,6 +148,137 @@
     <div class="footer-bottom">
         <p>KAIBON, 2025 Tous droits réservés</p>
     </div>
-</footer>
+</footer> 
+<script src="script.js"></script>
+<script>
+// Sélectionner le formulaire et ses champs
+const form = document.querySelector('.contact-form');
+const inputs = form.querySelectorAll('input[required], textarea[required]');
+const phoneInput = form.querySelector('input[placeholder="Téléphone"]');
+
+// Fonction pour afficher un message d'erreur près du champ
+function showError(input, message) {
+    let errorElement = input.parentElement.querySelector('.error-message');
+    if (!errorElement) {
+        errorElement = document.createElement('small');
+        errorElement.className = 'error-message';
+        input.parentElement.appendChild(errorElement);
+    }
+    errorElement.textContent = message;
+    input.classList.add('error-border');
+}
+
+// Fonction pour effacer le message d'erreur
+function clearError(input) {
+    const errorElement = input.parentElement.querySelector('.error-message');
+    if (errorElement) {
+        errorElement.remove();
+    }
+    input.classList.remove('error-border');
+}
+
+// Fonction de validation individuelle
+function validateInput(input) {
+    const value = input.value.trim();
+    const placeholder = input.getAttribute('placeholder');
+    let isValid = true;
+
+    // Vérifier si le champ est vide
+    if (!value) {
+        showError(input, `Le champ "${placeholder}" est requis.`);
+        isValid = false;
+    } else {
+        clearError(input);
+    }
+
+    // Validation spécifique pour le numéro de téléphone
+    if (input === phoneInput) {
+        const phoneRegex = /^[0-9]{10,}$/; // Au moins 10 chiffres
+        if (!phoneRegex.test(value)) {
+            showError(input, 'Le numéro de téléphone doit contenir au moins 10 chiffres.');
+            isValid = false;
+        } else {
+            clearError(input);
+        }
+    }
+  
+// Fonction pour valider le numéro de téléphone
+function validatePhone(phone) {
+    const regex = /^[0-9]{10}$/; // Vérifie que le numéro contient 10 chiffres
+    return regex.test(phone);
+}
+
+    return isValid;
+}
+
+// Fonction principale de validation du formulaire
+function validateForm() {
+    let isFormValid = true;
+
+    // Valider chaque champ requis
+    inputs.forEach((input) => {
+        const isValid = validateInput(input);
+        if (!isValid) {
+            isFormValid = false;
+        }
+    });
+
+    return isFormValid;
+}
+
+// Gérer l'événement "input" pour la validation en temps réel
+inputs.forEach((input) => {
+    input.addEventListener('input', () => {
+        validateInput(input);
+    });
+});
+
+// Gérer la soumission du formulaire
+form.addEventListener('submit', (e) => {
+    e.preventDefault(); // Empêcher la soumission par défaut
+
+    if (validateForm()) {
+        // Si tout est valide, afficher un message de succès
+        alert('Votre annonce a été soumise avec succès. Nous reviendrons vers vous dans les plus brefs délais.');
+        form.reset(); // Réinitialiser le formulaire
+    }
+});
+    
+
+
+   
+ // Sélection des éléments du DOM
+ const burgerMenu = document.querySelector('.burger-menu');
+const menu = document.querySelector('.menu');
+const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
+const dropdownMenus = document.querySelectorAll('.dropdown-menu');
+
+// Gestion de l'ouverture/fermeture du menu burger
+burgerMenu.addEventListener('click', () => {
+    menu.classList.toggle('active'); // Affiche ou masque le menu
+    burgerMenu.classList.toggle('active'); // Change l'apparence du bouton burger
+});
+
+// Gestion de l'ouverture/fermeture des sous-menus (dropdown)
+dropdownToggles.forEach((toggle, index) => {
+    toggle.addEventListener('click', (e) => {
+        e.preventDefault(); // Empêche le lien de rediriger
+        const dropdownMenu = dropdownMenus[index];
+        dropdownMenu.classList.toggle('open'); // Affiche ou masque le sous-menu
+    });
+});
+
+// Fermer le menu si l'utilisateur clique ailleurs
+document.addEventListener('click', (e) => {
+    if (!menu.contains(e.target) && !burgerMenu.contains(e.target)) {
+        menu.classList.remove('active');
+        burgerMenu.classList.remove('active');
+        dropdownMenus.forEach((dropdown) => dropdown.classList.remove('open'));
+    }
+});
+
+   
+
+</script>
 </body>
 </html>

@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" type="image/png" href="img/logo.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/style.css">
+    <title>KAIBON</title>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+
+        <nav class="navbar">
+            <div class="logo">
+                <img src="../Projet_final_2025/img/logo.png" alt="Logo KAIBON">
+            </div>
+            <button class="burger-menu" aria-label="Menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <div class="menu">
+                <a href="index.html">Accueil</a>
+                <div class="dropdown">
+                    <a href="catalogues.html" class="dropdown-toggle">Catalogues</a>
+                    <div class="dropdown-menu">
+                        <a href="types_de_biens.html">Nos types de biens</a>
+                        <a href="maisons_duplex.html">Nos maisons et duplex</a>
+                        <a href="appartements_villas.html">Nos appartements et villas</a>
+                        <a href="chambres_studios.html">Nos chambres et studios</a>
+                       
+                    </div>
+                </div>
+                <a href="contact.html">Contact</a>
+                <a href="a_propos.html">À propos</a>
+                <a href="hote.html">Devenez hôte</a>
+                <a href="inscription.html">S'inscrire</a>
+                <a href="connexion.html">Se connecter</a>
+                <a href="reservation.html">Réserver</a>
+            </div>
+        </nav>
+        
+
+    </header>
+
+      <!-- Hero Section 
+
+      <section class="hero">
+        <h1>Des séjours agréables en Guinée en toute simplicité</h1>
+        <div class="search-bar">
+            <input type="text" placeholder="Recherchez parmi les articles"> 
+            <button>Rechercher</button>
+        </div>
+    </section>
+    -->
+    <section class="hero-inscription">
+        <h1>Des séjours agréables en Guinée en toute simplicité</h1>
+    </section>
+
+    <div class="reservation-form"> 
+        <form action="#" method="POST">
+            <div class="form-group location">
+                <label for="destination"><span>&#128716;</span> Où allez-vous ?</label>
+                <input type="text" id="destination" name="destination" placeholder="Destination" required>
+            </div>
+            <div class="form-group dates">
+                <label for="dates"><span>&#128197;</span> Date d'arrivée — Date de départ</label>
+                <input type="date" id="arrival" name="arrival" required>
+                <input type="date" id="departure" name="departure" required>
+            </div>
+            <div class="form-group guests">
+                <label><span>&#128100;</span> Nombre de personne(s) et de chambre(s)</label>
+                <div class="guest-selector">
+                    <div class="guest-row">
+                        <span>Adultes</span>
+                        <button type="button" class="btn minus">-</button>
+                        <input type="number" name="adults" value="0" min="0" readonly>
+                        <button type="button" class="btn plus">+</button>
+                    </div>
+                    <div class="guest-row">
+                        <span>Enfants</span>
+                        <button type="button" class="btn minus">-</button>
+                        <input type="number" name="children" value="0" min="0" readonly>
+                        <button type="button" class="btn plus">+</button>
+                    </div>
+                    <div class="guest-row">
+                        <span>Chambres</span>
+                        <button type="button" class="btn minus">-</button>
+                        <input type="number" name="rooms" value="0" min="0" readonly>
+                        <button type="button" class="btn plus">+</button>
+                    </div>
+                </div>
+            </div>
+            <button type="submit" class="search-button">Rechercher</button>
+        </form>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-logo">
+                <img src="../Projet_final_2025/img/logo.png" alt="Logo KAIBON">
+                <address>
+                    5 Allée du Foehn<br>
+                    67540 Ostwald
+                </address>
+            </div>
+            <div class="footer-contact">
+                <h4>Nous contacter:</h4>
+                <p>Email: <a href="mailto:info@kaibon.com">info@kaibon.com</a></p>
+                <p>Tél: <a href="tel:+3330751252329">+33(0) 751252329</a></p>
+            </div>
+            <div class="footer-links">
+                <h4>Textes légaux</h4>
+                <ul>
+                    <li><a href="info_legales/Mentions-legales.pdf" target="_blank">Mentions légales</a></li>
+                    <li><a href="info_legales/cgu.pdf" target="_blank">CGU</a></li>
+                    <li><a href="info_legales/politique-confidentialite.pdf" target="_blank">Politique de confidentialité</a></li>
+                </ul>
+            </div>
+            <div class="footer-social">
+                <h4>Nous suivre sur les réseaux</h4>
+                <a href="https://x.com/?lang=fr&mx=2" target="_blank"><img src="../Projet_final_2025/icons/twitter-x.svg" alt="Twitter"></a>
+                <a href="https://www.instagram.com/" target="_blank"><img src="../Projet_final_2025/icons/instagram.svg" alt="Instagram"></a>
+                <a href="https://www.facebook.com/?locale=fr_FR" target="_blank"><img src="../Projet_final_2025/icons/facebook.svg" alt="Facebook"></a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>KAIBON, 2025 Tous droits réservés</p>
+        </div>
+    </footer>
+    <script src="script.js"></script>
+    <script>
+       
+      // Sélectionner les éléments du formulaire
+const form = document.querySelector("form");
+const destinationInput = document.getElementById("destination");
+const arrivalInput = document.getElementById("arrival");
+const departureInput = document.getElementById("departure");
+const guestSelectors = document.querySelectorAll(".guest-row");
+
+// Gérer l'augmentation et la diminution des invités et chambres
+guestSelectors.forEach((row) => {
+    const minusButton = row.querySelector(".minus");
+    const plusButton = row.querySelector(".plus");
+    const input = row.querySelector("input");
+
+    minusButton.addEventListener("click", () => {
+        const currentValue = parseInt(input.value, 10);
+        if (currentValue > 0) {
+            input.value = currentValue - 1;
+        }
+    });
+
+    plusButton.addEventListener("click", () => {
+        const currentValue = parseInt(input.value, 10);
+        input.value = currentValue + 1;
+    });
+});
+
+// Valider les dates
+function validateDates(arrival, departure) {
+    const arrivalDate = new Date(arrival);
+    const departureDate = new Date(departure);
+
+    if (departureDate <= arrivalDate) {
+        return false; // La date de départ doit être après la date d'arrivée
+    }
+    return true;
+}
+
+// Gérer la soumission du formulaire
+form.addEventListener("submit", (e) => {
+    e.preventDefault(); // Empêche le rechargement de la page
+
+    const destination = destinationInput.value.trim();
+    const arrival = arrivalInput.value;
+    const departure = departureInput.value;
+    const adults = parseInt(form.querySelector("input[name='adults']").value, 10);
+    const children = parseInt(form.querySelector("input[name='children']").value, 10);
+    const rooms = parseInt(form.querySelector("input[name='rooms']").value, 10);
+
+    let errors = [];
+
+    // Validation des champs
+    if (destination === "") {
+        errors.push("Veuillez entrer une destination.");
+    }
+
+    if (!validateDates(arrival, departure)) {
+        errors.push("La date de départ doit être après la date d'arrivée.");
+    }
+
+    if (adults === 0 && children === 0) {
+        errors.push("Veuillez sélectionner au moins un invité.");
+    }
+
+    if (rooms === 0) {
+        errors.push("Veuillez sélectionner au moins une chambre.");
+    }
+
+    // Afficher les erreurs ou confirmer la réservation
+    if (errors.length > 0) {
+        alert(errors.join("\n"));
+    } else {
+        alert("Votre réservation a été enregistrée avec succès !");
+        form.reset(); // Réinitialise le formulaire
+    }
+});
+
+
+
+ // Sélection des éléments du DOM
+ const burgerMenu = document.querySelector('.burger-menu');
+const menu = document.querySelector('.menu');
+const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
+const dropdownMenus = document.querySelectorAll('.dropdown-menu');
+
+// Gestion de l'ouverture/fermeture du menu burger
+burgerMenu.addEventListener('click', () => {
+    menu.classList.toggle('active'); // Affiche ou masque le menu
+    burgerMenu.classList.toggle('active'); // Change l'apparence du bouton burger
+});
+
+// Gestion de l'ouverture/fermeture des sous-menus (dropdown)
+dropdownToggles.forEach((toggle, index) => {
+    toggle.addEventListener('click', (e) => {
+        e.preventDefault(); // Empêche le lien de rediriger
+        const dropdownMenu = dropdownMenus[index];
+        dropdownMenu.classList.toggle('open'); // Affiche ou masque le sous-menu
+    });
+});
+
+// Fermer le menu si l'utilisateur clique ailleurs
+document.addEventListener('click', (e) => {
+    if (!menu.contains(e.target) && !burgerMenu.contains(e.target)) {
+        menu.classList.remove('active');
+        burgerMenu.classList.remove('active');
+        dropdownMenus.forEach((dropdown) => dropdown.classList.remove('open'));
+    }
+});
+
+
+
+    </script>
+    
+    </body>
+    </html>

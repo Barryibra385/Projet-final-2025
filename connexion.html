@@ -10,7 +10,8 @@
 <body>
     <!-- Header -->
     <header>
-         <nav class="navbar">
+
+        <nav class="navbar">
             <div class="logo">
                 <img src="../Projet_final_2025/img/logo.png" alt="Logo KAIBON">
             </div>
@@ -39,72 +40,31 @@
                 <a href="reservation.html">Réserver</a>
             </div>
         </nav>
+        
+
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero" style="background-image: url(../Projet_final_2025/img/image_fond_cotact2.jpg)!important">
-        <h1>Nous sommes là pour vous aider !  </h1>
-        <div class="search-bar">
-            <input type="text" placeholder="Recherchez parmi les articles">
-            <button>Rechercher</button>
-        </div>
+    <section class="hero-inscription">
+        <h1>Des séjours agréables en Guinée en toute simplicité</h1>
     </section>
-
-     <!-- Section de Contact -->
-     <section class="contact-section">
-        <div class="contact-info">
-            <h2>Contactez-nous :</h2>
-            <h3>un coup de fil, un clic et c'est parti !</h3>
-            <p>
-                Coucou ! Vous voulez nous contacter ? Eh bien vous êtes au bon endroit !<br>
-                Nous adorons recevoir des messages et discuter avec nos utilisateurs.<br><br>
-                Que vous ayez une question, une suggestion ou juste envie de nous dire bonjour, n'hésitez pas à nous écrire.<br>
-                Nous ne promettons pas des blagues hilarantes, mais nous ferons de notre mieux pour répondre rapidement et efficacement.
-            </p>
-        </div>
-
-        <!-- Formulaire -->
-        <div class="form-container">
-            <form>
-                <div class="form-row">
-                    <div class="input-group">
-                        <label for="nom">Nom</label>
-                        <input type="text" id="nom" placeholder="Entrez votre nom">
-                    </div>
-                    <div class="input-group">
-                        <label for="prenom">Prénom</label>
-                        <input type="text" id="prenom" placeholder="Entrez votre prénom">
-                    </div>
+    <div class="login-container">
+        <div class="login-box">
+            <div class="login-header">
+                <h2><span>&#128274;</span> Se connecter</h2>
+            </div>
+            <form action="#" method="POST">
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" placeholder="Email" required>
                 </div>
-
-                <div class="form-row">
-                    <div class="input-group">
-                        <label for="email">Email</label>
-                        <input type="email" id="email" placeholder="Entrez votre email">
-                    </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" placeholder="Password" required>
                 </div>
-                <div class="form-row">
-                    <div class="input-group">
-                        <label for="telephone">Télephone</label>
-                        <input type="telephone" id="telephone" placeholder="Entrez votre numero de Télephone">
-                    </div>
-                </div>
-
-
-                <div class="contactform-row">
-                    <div class="input-group">
-                        <label for="message">Votre message</label>
-                        <textarea id="message" rows="8" placeholder="Dites-nous tout"></textarea>
-                    </div>
-                </div>
-
-                <button type="submit" class="btn-submit">ENVOYER</button>
+                <button type="submit" class="login-button">Login</button>
             </form>
         </div>
-    </section>
-    <div class="bouton-réserver">
-        <button ><a href="">Réservez maintenant</a> </button>
-      </div> 
+    </div>
 
 <footer class="footer">
     <div class="footer-content">
@@ -121,7 +81,7 @@
             <p>Tél: <a href="tel:+3330751252329">+33(0) 751252329</a></p>
         </div>
         <div class="footer-links">
-            <h4>Mentions légales</h4>
+            <h4>Textes légaux</h4>
             <ul>
                 <li><a href="info_legales/Mentions-legales.pdf" target="_blank">Mentions légales</a></li>
                 <li><a href="info_legales/cgu.pdf" target="_blank">CGU</a></li>
@@ -138,61 +98,51 @@
     <div class="footer-bottom">
         <p>KAIBON, 2025 Tous droits réservés</p>
     </div>
-</footer> 
+</footer>
 <script src="script.js"></script>
 <script>
 // Sélectionner les éléments du formulaire
 const form = document.querySelector("form");
-const nomInput = document.getElementById("nom");
-const prenomInput = document.getElementById("prenom");
 const emailInput = document.getElementById("email");
-const telephoneInput = document.getElementById("telephone");
+const passwordInput = document.getElementById("password");
 
 // Fonction pour valider l'email
 function validateEmail(email) {
-    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Vérifie si l'email est au bon format
     return regex.test(email);
-}
-
-// Fonction pour valider le téléphone (uniquement chiffres et exactement 10 chiffres)
-function validatePhone(phone) {
-    const regex = /^\d{10}$/;
-    return regex.test(phone);
 }
 
 // Gérer la soumission du formulaire
 form.addEventListener("submit", (e) => {
     e.preventDefault(); // Empêche le rechargement de la page
 
+    const email = emailInput.value.trim();
+    const password = passwordInput.value.trim();
+
     let errors = [];
 
-    // Vérifications des champs
-    if (nomInput.value.trim() === "") {
-        errors.push("Le champ 'Nom' est obligatoire.");
-    }
-
-    if (prenomInput.value.trim() === "") {
-        errors.push("Le champ 'Prénom' est obligatoire.");
-    }
-
-    if (!validateEmail(emailInput.value.trim())) {
+    // Validation des champs
+    if (!validateEmail(email)) {
         errors.push("Veuillez entrer une adresse email valide.");
     }
 
-    if (!validatePhone(telephoneInput.value.trim())) {
-        errors.push("Veuillez entrer un numéro de téléphone valide ( 10 chiffres).");
+    if (password.length < 6) {
+        errors.push("Le mot de passe doit contenir au moins 6 caractères.");
     }
 
-    // Afficher les erreurs ou succès
+    // Afficher les erreurs ou simuler une connexion réussie
     if (errors.length > 0) {
         alert(errors.join("\n"));
     } else {
-        alert("Merci pour votre message, nous vous répondrons bientôt !");
-        form.reset(); // Réinitialise le formulaire
+        alert("Connexion réussie ! Bienvenue chez KAIBON !");
+        // Réinitialiser les champs (optionnel)
+        form.reset();
+        // Redirection ou autre action après la connexion
+        window.location.href = "index.html"; // Exemple de redirection vers la page d'accueil
     }
 });
 
-// Ajout d'un effet dynamique pour les champs de saisie
+// Ajout d'un effet de focus pour les champs de saisie
 const inputs = document.querySelectorAll("input");
 
 inputs.forEach((input) => {
@@ -201,9 +151,37 @@ inputs.forEach((input) => {
     });
 
     input.addEventListener("blur", () => {
-        input.style.borderColor = "#ccc"; // Réinitialise la couleur de la bordure après le focus
+        input.style.borderColor = "#ccc"; // Réinitialise la couleur après le focus
     });
 });
+
+// Fonctionnalité "Mot de passe oublié ?"
+const forgotPasswordLink = document.createElement("a");
+forgotPasswordLink.href = "#";
+forgotPasswordLink.textContent = "Mot de passe oublié ?";
+forgotPasswordLink.style.display = "block";
+forgotPasswordLink.style.textAlign = "right";
+forgotPasswordLink.style.marginTop = "10px";
+forgotPasswordLink.style.color = "#00aaff";
+forgotPasswordLink.style.textDecoration = "none";
+
+// Ajouter le lien après le champ de mot de passe
+passwordInput.parentElement.appendChild(forgotPasswordLink);
+
+// Gérer le clic sur "Mot de passe oublié ?"
+forgotPasswordLink.addEventListener("click", (e) => {
+    e.preventDefault();
+
+    // Demander à l'utilisateur de saisir son e-mail
+    const resetEmail = prompt("Veuillez entrer votre adresse email pour réinitialiser votre mot de passe :");
+
+    if (resetEmail && validateEmail(resetEmail)) {
+        alert(`Un lien de réinitialisation a été envoyé à ${resetEmail}.`);
+    } else if (resetEmail) {
+        alert("Veuillez entrer une adresse email valide.");
+    }
+});
+
 
 
  // Sélection des éléments du DOM
@@ -240,4 +218,4 @@ document.addEventListener('click', (e) => {
 
 </script>
 </body>
-</html> 
+</html>
