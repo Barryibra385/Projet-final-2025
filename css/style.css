@@ -337,6 +337,23 @@ body {
     font-size: 30px;
    
 }
+
+ .logements a:hover{
+    background-color:#00b300; 
+}
+
+.family-homes a:hover{
+    background-color:#00b300;
+}
+
+.pool-homes a:hover{
+    background-color:#00b300;    
+}
+
+.card-container a:hover{
+    background-color:#00b300;     
+}
+
 .bienvenu p{
    text-align: center;
   margin-top: 20;
@@ -365,7 +382,10 @@ body {
     flex-wrap: wrap;
     gap: 40px;
 }
-
+.card-container a, .family-homes a, .pool-homes a, .logements a{
+    text-decoration: none;
+    color: #0000FF;;
+}
 .card, .gallery div {
     width: 400px;
     text-align: center; 
@@ -685,6 +705,7 @@ h3{
      .footer-content {
         flex-direction: column;
         align-items: center;
+       
     }
     .footer-logo, .footer-contact, .footer-links, .footer-social {
         text-align: center;
@@ -701,6 +722,7 @@ h3{
     .btn-submit {
         font-size:18px;
     }
+
 }
 
 /* ma page devenez hôte */

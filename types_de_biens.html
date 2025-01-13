@@ -5,6 +5,7 @@
     <link rel="icon" type="image/png" href="img/logo.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="css/style.css">
+  <script src="../Projet_final_2025/js/script.js" defer></script>
     <title>KAIBON</title>
 </head>
 <body>
@@ -27,7 +28,7 @@
                         <a href="maisons_duplex.html">Nos maisons et duplex</a>
                         <a href="appartements_villas.html">Nos appartements et villas</a>
                         <a href="chambres_studios.html">Nos chambres et studios</a>
-                        <a href="types_de_biens.html">Nos types de biens</a>
+                        <a href="types_de_biens.html">Nos différents types de biens</a>
                     </div>
                 </div>
                 <a href="contact.html">Contact</a>
@@ -58,8 +59,7 @@
             Chez KAIBON, nous avons à cœur de vous offrir un choix varié de logements pour que votre séjour en Guinée soit à la hauteur de vos attentes. Chaque propriété est sélectionnée pour sa qualité, sa propreté et son emplacement stratégique. Explorez nos différents types de biens disponibles :
             </p>
         </div>
-        
-        <h2>Maisons et Duplexes</h2>
+        <h2><a href="maisons_duplex.html">Maisons et Duplexes</a></h2>
         <div class="maison-duplex">
         <p>Si vous avez besoin de plus d’espace, reservez un logement entier rien que pour vous</p>
         </div>
@@ -83,7 +83,7 @@
 
     <!-- Cuisine Section -->
     <section class="family-homes">
-        <h2>Appartements et Villas</h2>
+        <h2><a href="appartements_villas.html">Appartements et Villas</a></h2>
         <p>
             Séjournez dans les endroits les plus pratiques en réservant des logements dans des endroits partagés</p>
         <div class="gallery">
@@ -109,7 +109,8 @@
 
     <!-- Piscine Section -->
     <section class="pool-homes">
-        <h2>Chambres et studios</h2>
+        <h2><a href="chambres_studios.html">Chambres et studios</a></h2>
+
         <p>
             Profitez de votre propre espace de couchage et partagez des parties communes avec d’atres personnes.
         </p>
@@ -130,7 +131,7 @@
         </div>
     </section>
     <div class="bouton-réserver">
-        <button ><a href="">Réservez maintenant</a> </button>
+        <button ><a href="reservation.html">Réservez maintenant</a> </button>
       </div> 
 
 <footer class="footer">
@@ -166,40 +167,6 @@
         <p>KAIBON, 2025 Tous droits réservés</p>
     </div>
 </footer>
-<script src="script.js"></script>
-<script>
-  
- // Sélection des éléments du DOM
- const burgerMenu = document.querySelector('.burger-menu');
-const menu = document.querySelector('.menu');
-const dropdownToggles = document.querySelectorAll('.dropdown-toggle');
-const dropdownMenus = document.querySelectorAll('.dropdown-menu');
-
-// Gestion de l'ouverture/fermeture du menu burger
-burgerMenu.addEventListener('click', () => {
-    menu.classList.toggle('active'); // Affiche ou masque le menu
-    burgerMenu.classList.toggle('active'); // Change l'apparence du bouton burger
-});
-
-// Gestion de l'ouverture/fermeture des sous-menus (dropdown)
-dropdownToggles.forEach((toggle, index) => {
-    toggle.addEventListener('click', (e) => {
-        e.preventDefault(); // Empêche le lien de rediriger
-        const dropdownMenu = dropdownMenus[index];
-        dropdownMenu.classList.toggle('open'); // Affiche ou masque le sous-menu
-    });
-});
-
-// Fermer le menu si l'utilisateur clique ailleurs
-document.addEventListener('click', (e) => {
-    if (!menu.contains(e.target) && !burgerMenu.contains(e.target)) {
-        menu.classList.remove('active');
-        burgerMenu.classList.remove('active');
-        dropdownMenus.forEach((dropdown) => dropdown.classList.remove('open'));
-    }
-});
-
-</script>
 
 </body>
 </html>
