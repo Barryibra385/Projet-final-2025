@@ -21,7 +21,6 @@ html, body {
     max-width: 100%;
     }
 
-
 body {
     margin: 0;
     padding: 0;
@@ -297,9 +296,7 @@ body {
     text-align: center;
     padding: 30px 20px;
     
-   
 }
-
 
  /* Style pour chaque bloc */
  .logements,  img {
@@ -312,7 +309,6 @@ body {
 
   .logements img:hover {
     transform: translateY(-10px);
-    
 
 }
 
