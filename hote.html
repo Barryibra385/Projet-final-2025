@@ -86,13 +86,13 @@
                     Remplissez ce formulaire et nous reviendrons vers vous dans les plus brefs délais.
                 </p>
                 <div class="hoteform-group">
-                    <input type="text" placeholder="Nom" required>
-                    <input type="text" placeholder="Prénom" required>
+                    <input type="text" id="nom" placeholder="Entrez votre nom" required>
+                    <input type="text" id="prenom" placeholder="Entrez votre prénom" required>
                 </div>
-                <input type="email" placeholder="Email" required>
-                <input type="tel" placeholder="Téléphone" required>
-                <input type="text" placeholder="Ville" required>
-                <input type="text" placeholder="Type de bien" required>
+                <input type="email" id="email" placeholder="Entrez votre email" required>
+                <input type="telephone" id="telephone" placeholder="Entrez votre numero de Télephone"  required>
+                <input type="text" id="ville" name="Ville" placeholder="Ville" required>
+                <input type="text" id="type de bienvenue" name="Type de bien" placeholder="Type de bien" required>
                 <textarea placeholder="Description du bien" required></textarea>
                 <div class="checkbox-group">
                     <input type="checkbox" required>
@@ -114,7 +114,7 @@
         </section>
     </main>
     <div class="bouton-réserver">
-        <button ><a href="">Réservez maintenant</a> </button>
+        <button ><a href="reservation.html">Réservez maintenant</a> </button>
       </div> 
 
 <footer class="footer">
@@ -151,100 +151,8 @@
     </div>
 </footer> 
 <script>
+    
 
-//Le code JS de ma page "hôte"
-// Sélectionner le formulaire et ses champs
-const form2 = document.querySelector('.contact-form');
-const inputs = form.querySelectorAll('input[required], textarea[required]');
-const phoneInput = form.querySelector('input[placeholder="Téléphone"]');
-
-// Fonction pour afficher un message d'erreur près du champ
-function showError(input, message) {
-    let errorElement = input.parentElement.querySelector('.error-message');
-    if (!errorElement) {
-        errorElement = document.createElement('small');
-        errorElement.className = 'error-message';
-        input.parentElement.appendChild(errorElement);
-    }
-    errorElement.textContent = message;
-    input.classList.add('error-border');
-}
-
-// Fonction pour effacer le message d'erreur
-function clearError(input) {
-    const errorElement = input.parentElement.querySelector('.error-message');
-    if (errorElement) {
-        errorElement.remove();
-    }
-    input.classList.remove('error-border');
-}
-
-// Fonction de validation individuelle
-function validateInput(input) {
-    const value = input.value.trim();
-    const placeholder = input.getAttribute('placeholder');
-    let isValid = true;
-
-   // Vérifier si le champ est vide
-if (!value) {
-    showError(input, `Le champ "${placeholder}" est requis.`);
-    isValid = false;
-} else {
-    clearError(input);
-}
-
-    // Validation spécifique pour le numéro de téléphone
-    if (input === phoneInput) {
-        const phoneRegex = /^[0-9]{10,}$/; // Au moins 10 chiffres
-        if (!phoneRegex.test(value)) {
-            showError(input, 'Le numéro de téléphone doit contenir au moins 10 chiffres.');
-            isValid = false;
-        } else {
-            clearError(input);
-        }
-    }
-  
-// Fonction pour valider le numéro de téléphone
-function validatePhone(phone) {
-    const regex = /^[0-9]{10}$/; // Vérifie que le numéro contient 10 chiffres
-    return regex.test(phone);
-}
-
-    return isValid;
-}
-
-// Fonction principale de validation du formulaire
-function validateForm() {
-    let isFormValid = true;
-
-    // Valider chaque champ requis
-    inputs.forEach((input) => {
-        const isValid = validateInput(input);
-        if (!isValid) {
-            isFormValid = false;
-        }
-    });
-
-    return isFormValid;
-}
-
-// Gérer l'événement "input" pour la validation en temps réel
-inputs.forEach((input) => {
-    input.addEventListener('input', () => {
-        validateInput(input);
-    });
-});
-
-// Gérer la soumission du formulaire
-form.addEventListener('submit', (e) => {
-    e.preventDefault(); // Empêcher la soumission par défaut
-
-    if (validateForm()) {
-        // Si tout est valide, afficher un message de succès
-        alert('Votre annonce a été soumise avec succès. Nous reviendrons vers vous dans les plus brefs délais.');
-        form.reset(); // Réinitialiser le formulaire
-    }
-});
 
 </script>
 </body>
