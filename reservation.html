@@ -14,7 +14,7 @@
 
         <nav class="navbar">
             <div class="logo">
-                <img src="../Projet_final_2025/img/logo.png" alt="Logo KAIBON">
+                <a href="index.html"><img src="../Projet_final_2025/img/logo.png" alt="Logo KAIBON"></a>
             </div>
             <button class="burger-menu" aria-label="Menu">
                 <span></span>
@@ -59,48 +59,49 @@
         <h1>Des séjours agréables en Guinée en toute simplicité</h1>
     </section>
 
-    <div class="reservation-form"> 
-        <form action="#" method="POST">
-            <div class="form-group location">
-                <label for="destination"><span>&#128716;</span> Où allez-vous ?</label>
-                <input type="text" id="destination" name="destination" placeholder="Destination" required>
-            </div>
-            <div class="form-group dates">
-                <label for="dates"><span>&#128197;</span> Date d'arrivée — Date de départ</label>
-                <input type="date" id="arrival" name="arrival" required>
-                <input type="date" id="departure" name="departure" required>
-            </div>
-            <div class="form-group guests">
-                <label><span>&#128100;</span> Nombre de personne(s) et de chambre(s)</label>
-                <div class="guest-selector">
-                    <div class="guest-row">
-                        <span>Adultes</span>
-                        <button type="button" class="btn minus">-</button>
-                        <input type="number" name="adults" value="0" min="0" readonly>
-                        <button type="button" class="btn plus">+</button>
-                    </div>
-                    <div class="guest-row">
-                        <span>Enfants</span>
-                        <button type="button" class="btn minus">-</button>
-                        <input type="number" name="children" value="0" min="0" readonly>
-                        <button type="button" class="btn plus">+</button>
-                    </div>
-                    <div class="guest-row">
-                        <span>Chambres</span>
-                        <button type="button" class="btn minus">-</button>
-                        <input type="number" name="rooms" value="0" min="0" readonly>
-                        <button type="button" class="btn plus">+</button>
-                    </div>
+   <!-- Formulaire de réservation -->
+<div class="reservation-form">
+    <form id="reservation-form" action="#" method="POST">
+        <div class="form-group location">
+            <label for="destination"><span>&#128716;</span> Où allez-vous ?</label>
+            <input type="text" id="destination" name="destination" placeholder="Destination" required>
+        </div>
+        <div class="form-group dates">
+            <label for="dates"><span>&#128197;</span> Date d'arrivée — Date de départ</label>
+            <input type="date" id="arrival" name="arrival" required>
+            <input type="date" id="departure" name="departure" required>
+        </div>
+        <div class="form-group guests">
+            <label><span>&#128100;</span> Nombre de personne(s) et de chambre(s)</label>
+            <div class="guest-selector">
+                <div class="guest-row">
+                    <span>Adultes</span>
+                    <button type="button" class="btn minus">-</button>
+                    <input type="number" name="adults" value="0" min="0" readonly>
+                    <button type="button" class="btn plus">+</button>
+                </div>
+                <div class="guest-row">
+                    <span>Enfants</span>
+                    <button type="button" class="btn minus">-</button>
+                    <input type="number" name="children" value="0" min="0" readonly>
+                    <button type="button" class="btn plus">+</button>
+                </div>
+                <div class="guest-row">
+                    <span>Chambres</span>
+                    <button type="button" class="btn minus">-</button>
+                    <input type="number" name="rooms" value="0" min="0" readonly>
+                    <button type="button" class="btn plus">+</button>
                 </div>
             </div>
-            <button type="submit" class="search-button">Rechercher</button>
-        </form>
-    </div>
+        </div>
+        <button type="submit" class="search-button">Rechercher</button>
+    </form>
+</div>
 
     <footer class="footer">
         <div class="footer-content">
             <div class="footer-logo">
-                <img src="../Projet_final_2025/img/logo.png" alt="Logo KAIBON">
+                <a href="index.html"><img src="../Projet_final_2025/img/logo.png" alt="Logo KAIBON"></a>
                 <address>
                     5 Allée du Foehn<br>
                     67540 Ostwald
@@ -114,9 +115,9 @@
             <div class="footer-links">
                 <h4>Textes légaux</h4>
                 <ul>
-                    <li><a href="info_legales/Mentions-legales.pdf" target="_blank">Mentions légales</a></li>
-                    <li><a href="info_legales/cgu.pdf" target="_blank">CGU</a></li>
-                    <li><a href="info_legales/politique-confidentialite.pdf" target="_blank">Politique de confidentialité</a></li>
+                    <li><a href="mentions_legales.html" >Mentions légales</a></li>
+                <li><a href="cgu.html" >CGU</a></li>
+                <li><a href="politique_de_confidentialite.html" >Politique de confidentialité</a></li>
                 </ul>
             </div>
             <div class="footer-social">
@@ -131,87 +132,6 @@
         </div>
     </footer>
    
-    <script>
-
-//Le code Js de ma page "réservation"
-// Sélectionner les éléments du formulaire
-const form = document.querySelector("form");
-const destinationInput = document.getElementById("destination");
-const arrivalInput = document.getElementById("arrival");
-const departureInput = document.getElementById("departure");
-const guestSelectors = document.querySelectorAll(".guest-row");
-
-// Gérer l'augmentation et la diminution des invités et chambres
-guestSelectors.forEach((row) => {
-    const minusButton = row.querySelector(".minus");
-    const plusButton = row.querySelector(".plus");
-    const input = row.querySelector("input");
-
-    minusButton.addEventListener("click", () => {
-        const currentValue = parseInt(input.value, 10);
-        if (currentValue > 0) {
-            input.value = currentValue - 1;
-        }
-    });
-
-    plusButton.addEventListener("click", () => {
-        const currentValue = parseInt(input.value, 10);
-        input.value = currentValue + 1;
-    });
-});
-
-// Valider les dates
-function validateDates(arrival, departure) {
-    const arrivalDate = new Date(arrival);
-    const departureDate = new Date(departure);
-
-    if (departureDate <= arrivalDate) {
-        return false; // La date de départ doit être après la date d'arrivée
-    }
-    return true;
-}
-
-// Gérer la soumission du formulaire
-form.addEventListener("submit", (e) => {
-    e.preventDefault(); // Empêche le rechargement de la page
-
-    const destination = destinationInput.value.trim();
-    const arrival = arrivalInput.value;
-    const departure = departureInput.value;
-    const adults = parseInt(form.querySelector("input[name='adults']").value, 10);
-    const children = parseInt(form.querySelector("input[name='children']").value, 10);
-    const rooms = parseInt(form.querySelector("input[name='rooms']").value, 10);
-
-    let errors = [];
-
-    // Validation des champs
-    if (destination === "") {
-        errors.push("Veuillez entrer une destination.");
-    }
-
-    if (!validateDates(arrival, departure)) {
-        errors.push("La date de départ doit être après la date d'arrivée.");
-    }
-
-    if (adults === 0 && children === 0) {
-        errors.push("Veuillez sélectionner au moins un invité.");
-    }
-
-    if (rooms === 0) {
-        errors.push("Veuillez sélectionner au moins une chambre.");
-    }
-
-    // Afficher les erreurs ou confirmer la réservation
-    if (errors.length > 0) {
-        alert(errors.join("\n"));
-    } else {
-        alert("Votre réservation a été enregistrée avec succès !");
-        form.reset(); // Réinitialise le formulaire
-    }
-});
-
-
-    </script>
-    
+   
     </body>
     </html>

@@ -29,8 +29,6 @@ document.addEventListener('click', (e) => {
     }
 });
 
-
-
 // Module commun pour les validations
 const ValidationUtils = {
     validateEmail(email) {
@@ -43,9 +41,6 @@ const ValidationUtils = {
         return regex.test(phone);
     }
 };
-
-
-
 // ================= FORMULAIRE DE CONTACT ==================
 
 // Sélectionner les éléments du formulaire "Contact"
@@ -156,25 +151,26 @@ const checkboxInputs = document.querySelectorAll('.checkbox-group input[type="ch
 
 // Fonction pour afficher une erreur
 function showError(input, message) {
-    let errorElement = input.nextElementSibling;
-    if (!errorElement || !errorElement.classList.contains('error-message')) {
+    let errorElement = input.parentElement.querySelector('.error-message'); // Chercher le message d'erreur existant
+    if (!errorElement) {
+        // Créer un nouveau message d'erreur s'il n'existe pas déjà
         errorElement = document.createElement('div');
         errorElement.className = 'error-message';
         errorElement.style.color = 'red';
         errorElement.style.marginTop = '5px';
         input.parentElement.appendChild(errorElement);
     }
-    errorElement.textContent = message;
+    errorElement.textContent = message; // Mettre à jour le message d'erreur
     input.style.borderColor = 'red';
 }
 
 // Fonction pour effacer une erreur
 function clearError(input) {
-    const errorElement = input.nextElementSibling;
-    if (errorElement && errorElement.classList.contains('error-message')) {
-        errorElement.remove();
+    const errorElement = input.parentElement.querySelector('.error-message'); // Chercher le message d'erreur existant
+    if (errorElement) {
+        errorElement.remove(); // Supprimer le message d'erreur s'il existe
     }
-    input.style.borderColor = ''; // Réinitialisation de la bordure
+    input.style.borderColor = ''; // Réinitialiser la bordure
 }
 
 // Fonction pour valider un champ individuel
@@ -216,24 +212,250 @@ function validateInput(input) {
 }
 
 // Validation en temps réel pour les champs
-[...document.querySelectorAll('.contact-form input, .contact-form textarea')].forEach((input) => {
+document.querySelectorAll('.contact-form input, .contact-form textarea').forEach((input) => {
     input.addEventListener('input', () => {
-        validateInput(input);
+        validateInput(input); // Valider le champ à chaque saisie
     });
 });
 
-// Gestion de la soumission du formulaire hôte
-formHost.addEventListener('submit', (e) => {
-    e.preventDefault(); // Empêche l'envoi du formulaire par défaut
+if (formHost) {
+    // Gestion de la soumission du formulaire hôte
+    formHost.addEventListener('submit', (e) => {
+        e.preventDefault(); // Empêche l'envoi du formulaire par défaut
 
-    const isFormValid = [...document.querySelectorAll('.contact-form input, .contact-form textarea')].every((input) =>
-        validateInput(input)
-    );
+        const isFormValid = [...document.querySelectorAll('.contact-form input, .contact-form textarea')].every((input) =>
+            validateInput(input)
+        );
 
-    if (isFormValid) {
-        alert('Merci ! Votre annonce a été soumise avec succès. Nous reviendrons vers vous dans les plus brefs délais.');
-        formHost.reset(); // Réinitialiser le formulaire après soumission
-        document.querySelectorAll('.error-message').forEach((error) => error.remove());
+        if (isFormValid) {
+            alert('Merci ! Votre annonce a été soumise avec succès. Nous reviendrons vers vous dans les plus brefs délais.');
+            formHost.reset(); // Réinitialiser le formulaire après soumission
+            document.querySelectorAll('.error-message').forEach((error) => error.remove()); // Supprimer les messages d'erreur
+        }
+    });
+}
+
+    
+// -------- Gestion du formulaire de connexion --------
+
+// Sélectionner le formulaire de connexion uniquement
+const loginForm = document.querySelector("#login-form");
+
+if (loginForm) {
+    const emailInput = loginForm.querySelector("#login-email");
+    const passwordInput = loginForm.querySelector("#login-password");
+
+    // Fonction pour valider l'email
+    function validateLoginEmail(email) {
+        const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Vérifie si l'email est au bon format
+        return regex.test(email);
     }
-});
 
+    // Gérer la soumission du formulaire de connexion
+    loginForm.addEventListener("submit", (e) => {
+        e.preventDefault(); // Empêche le rechargement de la page
+
+        const email = emailInput.value.trim();
+        const password = passwordInput.value.trim();
+
+        let errors = [];
+
+        // Validation des champs
+        if (!validateLoginEmail(email)) {
+            errors.push("Veuillez entrer une adresse email valide.");
+        }
+
+        if (password.length < 6) {
+            errors.push("Le mot de passe doit contenir au moins 6 caractères.");
+        }
+
+        // Afficher les erreurs ou simuler une connexion réussie
+        if (errors.length > 0) {
+            alert(errors.join("\n"));
+        } else {
+            alert("Connexion réussie ! Bienvenue chez KAIBON !");
+            loginForm.reset();
+            // Redirection ou autre action après la connexion
+            window.location.href = "index.html"; // Exemple de redirection
+        }
+    });
+
+    // Ajout d'un effet de focus pour les champs de saisie
+    const loginInputs = loginForm.querySelectorAll("input");
+    loginInputs.forEach((input) => {
+        input.addEventListener("focus", () => {
+            input.style.borderColor = "#00aaff"; // Change la couleur de la bordure lors du focus
+        });
+
+        input.addEventListener("blur", () => {
+            input.style.borderColor = "#ccc"; // Réinitialise la couleur après le focus
+        });
+    });
+
+    // Fonctionnalité "Mot de passe oublié ?"
+    const forgotPasswordLink = document.createElement("a");
+    forgotPasswordLink.href = "#";
+    forgotPasswordLink.textContent = "Mot de passe oublié ?";
+    forgotPasswordLink.style.display = "block";
+    forgotPasswordLink.style.textAlign = "right";
+    forgotPasswordLink.style.marginTop = "10px";
+    forgotPasswordLink.style.color = "#00aaff";
+    forgotPasswordLink.style.textDecoration = "none";
+
+    // Ajouter le lien après le champ de mot de passe UNIQUEMENT dans le formulaire de connexion
+    passwordInput.parentElement.appendChild(forgotPasswordLink);
+
+    // Gérer le clic sur "Mot de passe oublié ?"
+    forgotPasswordLink.addEventListener("click", (e) => {
+        e.preventDefault();
+
+        // Demander à l'utilisateur de saisir son e-mail
+        const resetEmail = prompt("Veuillez entrer votre adresse email pour réinitialiser votre mot de passe :");
+
+        if (resetEmail && validateLoginEmail(resetEmail)) {
+            alert(`Un lien de réinitialisation a été envoyé à ${resetEmail}.`);
+        } else if (resetEmail) {
+            alert("Veuillez entrer une adresse email valide.");
+        }
+    });
+}
+
+// -------- Gestion du formulaire d'inscription --------
+
+// Supposons que le formulaire d'inscription a l'ID "registration-form"
+// Pour s'assurer que la fonctionnalité "Mot de passe oublié ?" ne soit pas appliquée, nous l'isolons totalement
+
+const registrationForm = document.querySelector("#registration-form");
+
+if (registrationForm) {
+    // Validation et gestion spécifiques au formulaire d'inscription
+    const fullNameInput = registrationForm.querySelector("#fullname");
+    const emailInput = registrationForm.querySelector("#email");
+    const phoneInput = registrationForm.querySelector("#phone-number");
+    const passwordInput = registrationForm.querySelector("#password");
+    const confirmPasswordInput = registrationForm.querySelector("#confirm-password");
+
+    // Fonction pour valider l'email
+    function validateRegistrationEmail(email) {
+        const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return regex.test(email);
+    }
+
+    // Fonction pour valider le numéro de téléphone
+    function validatePhone(phone) {
+        const regex = /^[0-9]{10}$/;
+        return regex.test(phone);
+    }
+
+    // Gérer la soumission du formulaire d'inscription
+    registrationForm.addEventListener("submit", (e) => {
+        e.preventDefault(); // Empêche le rechargement de la page
+
+        const fullName = fullNameInput.value.trim();
+        const email = emailInput.value.trim();
+        const phone = phoneInput.value.trim();
+        const password = passwordInput.value.trim();
+        const confirmPassword = confirmPasswordInput.value.trim();
+
+        let errors = [];
+
+        // Vérifications des champs
+        if (fullName === "") {
+            errors.push("Veuillez entrer votre nom et prénom.");
+        }
+
+        if (!validateRegistrationEmail(email)) {
+            errors.push("Veuillez entrer une adresse email valide.");
+        }
+
+        if (!validatePhone(phone)) {
+            errors.push("Veuillez entrer un numéro de téléphone valide (10 chiffres).");
+        }
+
+        if (password.length < 6) {
+            errors.push("Le mot de passe doit contenir au moins 6 caractères.");
+        }
+
+        if (password !== confirmPassword) {
+            errors.push("Les mots de passe ne correspondent pas.");
+        }
+
+        // Affichage des erreurs ou confirmation de l'inscription
+        if (errors.length > 0) {
+            alert(errors.join("\n"));
+        } else {
+            alert("Inscription réussie ! Bienvenue chez KAIBON !");
+            registrationForm.reset(); // Réinitialise le formulaire après succès
+        }
+    });
+}
+
+// Gestion du formulaire de réservation
+const reservationForm = document.querySelector("#reservation-form");
+
+if (reservationForm) {
+    const destinationInput = document.getElementById("destination");
+    const arrivalInput = document.getElementById("arrival");
+    const departureInput = document.getElementById("departure");
+    const guestSelectors = document.querySelectorAll(".guest-row");
+
+    guestSelectors.forEach((row) => {
+        const minusButton = row.querySelector(".minus");
+        const plusButton = row.querySelector(".plus");
+        const input = row.querySelector("input");
+
+        minusButton.addEventListener("click", () => {
+            const currentValue = parseInt(input.value, 10);
+            if (currentValue > 0) {
+                input.value = currentValue - 1;
+            }
+        });
+
+        plusButton.addEventListener("click", () => {
+            const currentValue = parseInt(input.value, 10);
+            input.value = currentValue + 1;
+        });
+    });
+
+    function validateDates(arrival, departure) {
+        const arrivalDate = new Date(arrival);
+        const departureDate = new Date(departure);
+        return departureDate > arrivalDate;
+    }
+
+    reservationForm.addEventListener("submit", (e) => {
+        e.preventDefault();
+
+        const destination = destinationInput.value.trim();
+        const arrival = arrivalInput.value;
+        const departure = departureInput.value;
+        const adults = parseInt(reservationForm.querySelector("input[name='adults']").value, 10);
+        const children = parseInt(reservationForm.querySelector("input[name='children']").value, 10);
+        const rooms = parseInt(reservationForm.querySelector("input[name='rooms']").value, 10);
+
+        let errors = [];
+
+        if (destination === "") {
+            errors.push("Veuillez entrer une destination.");
+        }
+
+        if (!validateDates(arrival, departure)) {
+            errors.push("La date de départ doit être après la date d'arrivée.");
+        }
+
+        if (adults === 0 && children === 0) {
+            errors.push("Veuillez sélectionner au moins un invité.");
+        }
+
+        if (rooms === 0) {
+            errors.push("Veuillez sélectionner au moins une chambre.");
+        }
+
+        if (errors.length > 0) {
+            alert(errors.join("\n"));
+        } else {
+            alert("Votre réservation a été enregistrée avec succès !");
+            reservationForm.reset();
+        }
+    });
+}
