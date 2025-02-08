@@ -67,7 +67,6 @@ body {
     margin: 50px;
     
 }
-
 .menu a {
     color: white;
     text-decoration: none;
@@ -92,8 +91,7 @@ body {
     background-color:  #0000FF;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
     z-index: 1000;
-    border-radius: 4px;
-    
+    border-radius: 4px; 
 }
 
 .dropdown-menu a {
@@ -927,8 +925,6 @@ input:focus {
     
 }
 
-
-
 /* Formulaire */
    form  {
    
@@ -945,8 +941,6 @@ input:focus {
     display: flex;
     flex-direction: column;
     justify-content: center;
-
-    
 }
 
 .form-group label {
@@ -1158,10 +1152,6 @@ input:focus {
 .team-leader {
     margin-top: 40px;
     text-align: center;
-   
-   
-    
-
 }
 
 .team-leader img {
@@ -1173,8 +1163,6 @@ input:focus {
     margin-left: 170px;
     box-shadow: 0 10px 10px blue;
     margin-right: 80px;
-    
-
 }
 
 .team-leader p {
@@ -1262,9 +1250,6 @@ p{
     
 }
  
-
-
-
 /* -------------------------------MEDIA QUERRY---------------------------------------*/
 @media (max-width: 320px) {
     .logo{
@@ -1317,14 +1302,8 @@ p{
     padding: 30px;
     overflow-x: auto; /* Ajoute un scroll horizontal si nécessaire */
     align-items: center;
-
-    
-   
-        
-       
+ 
     }
-    
-
     .commentaire, .service {
         justify-content: center;
         padding: 20px;
@@ -1332,11 +1311,8 @@ p{
         flex: 0 0 auto; /* Empêche les cartes de rétrécir */
         
     }
-
-      
-    
+  
 }
-
 @media (max-width: 768px) {
     .logo{
         margin-left: 0;
@@ -1408,9 +1384,6 @@ p{
         flex-direction: column;
         padding: 10px;
     }
-
-   
-
 
     .input-group {
         flex: 1 1 100%;
@@ -1505,7 +1478,6 @@ p{
     }
 }
 
-
 h2 {
     font-size: 24px;
     color: white
@@ -1553,9 +1525,6 @@ h2 {
         flex: 0 0 auto; /* Empêche les cartes de rétrécir */
     }
 }
-
- 
-
 
 /* Bannière des cookies */
 .cookie-banner {
@@ -1669,7 +1638,6 @@ h2 {
     background-color: #7f8c8d;
 }
 
-
 /* Désactiver les interactions mais permettre le scroll */
 body.no-click {
     pointer-events: none; /* Désactive les clics et interactions */
@@ -1692,8 +1660,6 @@ body.no-click {
     z-index: 9998;
 }
 
-
-
 #cookie-policy-link {
     color: #007bff; /* Bleu */
     text-decoration: underline;
@@ -1704,8 +1670,6 @@ body.no-click {
 #cookie-policy-link:hover {
     color: #0056b3; /* Bleu foncé au survol */
 }
-
-
 
 #cookie-banner {
     display: none; /* Caché au chargement de la page */
@@ -1731,8 +1695,6 @@ body.no-click {
     color: black;
 }
 
-
-
 #cookie-policy-link, #manage-preferences {
     pointer-events: none; /* Désactive les clics */
 }
@@ -1740,8 +1702,6 @@ body.no-click {
 .show #manage-preferences {
     pointer-events: auto; /* Active les clics */
 }
-  
-
 #preferences-content input[type='checkbox'] {
     pointer-events: none;
     opacity: 0.5;
@@ -1750,8 +1710,6 @@ body.no-click {
     pointer-events: auto;
     opacity: 1;
 }
-
-
 /* Bannière des cookies */
 #cookie-banner {
     display: none; /* Caché par défaut */
