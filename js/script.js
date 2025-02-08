@@ -459,3 +459,366 @@ if (reservationForm) {
         }
     });
 }
+
+
+
+// code js pour la meteo
+const apiKey = '7b69f8df42046728f5a5214a1f96f8ae'; //la clé API OpenWeatherMap
+    const city = "strasbourg"; // Ville de ton choix
+ 
+    // URL de l'API OpenWeatherMap
+    const apiURL = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric&lang=fr`;
+ 
+    function afficherMeteo(data) {
+        const location = document.getElementById("localisation");
+        const temperature = document.getElementById("temperature");
+        const description = document.getElementById("description");
+        const humidity = document.getElementById("humidity");
+ 
+        location.textContent = `Ville: ${data.name}`;
+        temperature.textContent = `Température: ${data.main.temp}°C`;
+        description.textContent = `Description: ${data.weather[0].description}`;
+        humidity.textContent = `Humidité: ${data.main.humidity}%`;
+    }
+ 
+    function obtenirMeteo() {
+        fetch(apiURL)
+            .then(response => response.json())
+            .then(data => afficherMeteo(data))
+            .catch(error => {
+                console.error('Erreur:', error);
+                document.getElementById("meteo").innerHTML = "<p>Impossible de récupérer les données météo.</p>";
+            });
+    }
+ 
+    // Appeler la fonction pour charger la météo dès que la page est chargée
+    window.onload = obtenirMeteo;
+
+
+
+
+
+    // http://127.0.0.1:5500/db.json
+
+const container = document.querySelector(".commentaire");
+
+fetch("db.json")
+.then(function(response){
+    return response.json()
+})
+.then(function(data){
+
+    let html = "";
+
+    data.forEach(function(user){
+        html += `
+        <div class="card-avis">
+            <p>Nom : ${user.nom}</p>
+            <p>Note : ${user.note}</p>
+            <p>Commentaire : ${user.commentaire}</p>
+            <p>Date : ${user.date}</p>
+        </div> 
+        `
+
+    })
+    console.log(html)
+
+    container.innerHTML = html;
+})
+
+
+// http://127.0.0.1:5500/db.json
+
+const container2 = document.querySelector(".service");
+
+fetch("db2.json")
+.then(function(response2){
+    return response2.json()
+})
+.then(function(data2){
+
+    let html2 = "";
+
+    data2.forEach(function(user2){
+        html2 += `
+        <div class="card-avis">
+            <p>Nom : ${user2.nom}</p>
+            <p>Prix : ${user2.prix}</p>
+            <p>Description : ${user2.description}</p>
+        </div> 
+        `
+    })
+    console.log(html2)
+
+    container2.innerHTML = html2;
+})
+
+
+
+
+
+document.addEventListener("DOMContentLoaded", function () {
+    const body = document.body;
+    const overlay = document.getElementById("cookie-overlay");
+    const banner = document.getElementById("cookie-banner");
+    const acceptBtn = document.getElementById("accept-cookies");
+    const declineBtn = document.getElementById("decline-cookies");
+    const preferencesBtn = document.getElementById("preferences-cookies");
+
+    const modal = document.getElementById("cookie-modal");
+    const savePreferencesBtn = document.getElementById("save-preferences");
+    const closeModalBtn = document.getElementById("close-modal");
+
+    // Désactiver la navigation dès le début
+    function disableNavigation() {
+        body.classList.add("no-click");
+        overlay.style.display = "block";
+    }
+
+    // Activer la navigation après un choix
+    function enableNavigation() {
+        body.classList.remove("no-click");
+        overlay.style.display = "none";
+    }
+
+    // Vérifie si un cookie existe
+    function getCookie(name) {
+        let nameEQ = name + "=";
+        let ca = document.cookie.split(';');
+        for (let i = 0; i < ca.length; i++) {
+            let c = ca[i].trim();
+            if (c.indexOf(nameEQ) === 0) return c.substring(nameEQ.length, c.length);
+        }
+        return null;
+    }
+
+    // Fonction pour créer un cookie
+    function setCookie(name, value, days) {
+        let expires = "";
+        if (days) {
+            let date = new Date();
+            date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+            expires = "; expires=" + date.toUTCString();
+        }
+        document.cookie = name + "=" + value + "; path=/" + expires;
+    }
+
+    // Vérifier si l'utilisateur a déjà fait un choix
+    function checkCookieConsent() {
+        if (getCookie("cookiesAccepted") || getCookie("preferencesSet")) {
+            enableNavigation(); // Débloquer la navigation
+            banner.style.display = "none";
+        } else {
+            disableNavigation(); // Bloquer la navigation
+            banner.style.display = "flex";
+        }
+    }
+
+    // Accepter tous les cookies
+    acceptBtn.addEventListener("click", function () {
+        setCookie("cookiesAccepted", "true", 365);
+        enableNavigation();
+        banner.style.display = "none";
+    });
+
+    // Refuser tous les cookies
+    declineBtn.addEventListener("click", function () {
+        setCookie("cookiesAccepted", "false", 365);
+        enableNavigation();
+        banner.style.display = "none";
+    });
+
+    // Ouvrir le modal des préférences
+    preferencesBtn.addEventListener("click", function () {
+        modal.style.display = "block";
+    });
+
+    // Fermer le modal
+    closeModalBtn.addEventListener("click", function () {
+        modal.style.display = "none";
+    });
+
+    // Enregistrer les préférences utilisateur
+    savePreferencesBtn.addEventListener("click", function () {
+        setCookie("preferencesSet", "true", 365);
+        setCookie("analytics", document.getElementById("analytics-cookies").checked, 365);
+        setCookie("ads", document.getElementById("ads-cookies").checked, 365);
+        setCookie("functional", document.getElementById("functional-cookies").checked, 365);
+        enableNavigation();
+        banner.style.display = "none";
+        modal.style.display = "none";
+    });
+
+    checkCookieConsent(); // Vérifier au chargement de la page
+});
+
+
+
+
+document.addEventListener("DOMContentLoaded", function () {
+    setTimeout(function () {
+        document.getElementById("cookie-banner").classList.add("show");
+        document.getElementById("cookie-banner").style.display = "block";
+        
+    }, 5000); // 5000 millisecondes = 5 secondes
+});
+
+
+
+document.addEventListener("DOMContentLoaded", function () {
+    setTimeout(function () {
+        let cookieBanner = document.getElementById("cookie-banner");
+        cookieBanner.classList.add("show");
+        cookieBanner.style.display = "block";
+
+        // Active les éléments après affichage du bandeau
+        enableCookieInteractions();
+    }, 5000); // Affichage après 5 secondes
+
+    function enableCookieInteractions() {
+        let cookiePolicyLink = document.getElementById("cookie-policy-link");
+        let preferencesButton = document.getElementById("manage-preferences");
+        let preferencesContent = document.getElementById("preferences-content");
+
+        // Vérifie que les éléments existent
+        if (cookiePolicyLink) {
+            cookiePolicyLink.style.pointerEvents = "auto"; // Active les clics
+            cookiePolicyLink.addEventListener("click", function (event) {
+                event.stopPropagation();
+            });
+        }
+
+        if (preferencesButton && preferencesContent) {
+            preferencesButton.style.pointerEvents = "auto"; // Active les clics
+            preferencesButton.addEventListener("click", function () {
+                preferencesContent.style.display = preferencesContent.style.display === "block" ? "none" : "block";
+            });
+        }
+    }
+});
+
+
+
+
+document.addEventListener("DOMContentLoaded", function () {
+    setTimeout(function () {
+        let cookieBanner = document.getElementById("cookie-banner");
+        if (cookieBanner) {
+            cookieBanner.classList.add("show");
+            cookieBanner.style.display = "block";
+        }
+    }, 5000); // Affichage après 5 secondes
+
+    function enableCheckboxes() {
+        let checkboxes = document.querySelectorAll("#preferences-content input[type='checkbox']");
+        checkboxes.forEach(checkbox => {
+            checkbox.removeAttribute("disabled"); // Supprime l'attribut disabled
+            checkbox.style.pointerEvents = "auto"; // Rend cliquable
+            checkbox.style.opacity = "1"; // Assure qu'elles sont visibles
+        });
+    }
+
+    let preferencesButton = document.getElementById("manage-preferences");
+    let preferencesContent = document.getElementById("preferences-content");
+
+    if (preferencesButton && preferencesContent) {
+        preferencesButton.addEventListener("click", function () {
+            let isVisible = preferencesContent.style.display === "block";
+            preferencesContent.style.display = isVisible ? "none" : "block";
+            
+            // ✅ Active immédiatement les cases lorsqu'on ouvre les préférences
+            if (!isVisible) {
+                enableCheckboxes();
+            }
+        });
+    }
+
+    let savePreferencesButton = document.getElementById("save-preferences");
+
+    if (savePreferencesButton) {
+        savePreferencesButton.addEventListener("click", function () {
+            let checkboxes = document.querySelectorAll("#preferences-content input[type='checkbox']");
+            let hasChecked = Array.from(checkboxes).some(checkbox => checkbox.checked);
+
+            if (hasChecked) {
+                document.body.style.overflow = "auto"; // Autorise la navigation après choix
+                document.getElementById("cookie-banner").style.display = "none"; // Masquer le bandeau
+            } else {
+                alert("Veuillez sélectionner au moins une option.");
+            }
+        });
+    }
+});
+
+
+document.addEventListener("DOMContentLoaded", function () {
+    let cookieBanner = document.getElementById("cookie-banner");
+    let preferencesButton = document.getElementById("manage-preferences");
+    let preferencesContent = document.getElementById("preferences-content");
+    let savePreferencesButton = document.getElementById("save-preferences");
+
+    // Vérifier si un choix a déjà été fait
+    if (localStorage.getItem("cookiesAccepted")) {
+        return; // Si un choix a été fait, ne pas afficher le bandeau
+    }
+
+    // Afficher le bandeau après 5 secondes
+    setTimeout(function () {
+        if (cookieBanner) {
+            cookieBanner.classList.add("show");
+            cookieBanner.style.display = "block";
+        }
+    }, 5000);
+
+    function enableCheckboxes() {
+        let checkboxes = document.querySelectorAll("#preferences-content input[type='checkbox']");
+        checkboxes.forEach(checkbox => {
+            checkbox.removeAttribute("disabled"); // Active les cases
+            checkbox.style.pointerEvents = "auto"; // Permet de cliquer
+            checkbox.style.opacity = "1"; // Assure la visibilité
+        });
+    }
+
+    if (preferencesButton && preferencesContent) {
+        preferencesButton.addEventListener("click", function () {
+            let isVisible = preferencesContent.style.display === "block";
+            preferencesContent.style.display = isVisible ? "none" : "block";
+            
+            if (!isVisible) {
+                enableCheckboxes(); // Active les cases lors de l'ouverture
+            }
+        });
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+        let savePreferencesButton = document.getElementById("save-preferences");
+    
+        if (savePreferencesButton) {
+            savePreferencesButton.addEventListener("click", function () {
+                let checkboxes = document.querySelectorAll("#preferences-content input[type='checkbox']");
+                let hasChecked = Array.from(checkboxes).some(checkbox => checkbox.checked);
+    
+                if (!hasChecked) {
+                    alert("Veuillez sélectionner au moins une option.");
+                    return; // Arrête l'exécution ici si aucune option n'est sélectionnée
+                }
+    
+                // Sauvegarde le choix de l'utilisateur
+                localStorage.setItem("cookiesAccepted", "true");
+    
+                // Enregistrer les préférences cochées
+                checkboxes.forEach(checkbox => {
+                    localStorage.setItem(checkbox.id, checkbox.checked);
+                });
+    
+                document.body.style.overflow = "auto"; // Autorise la navigation
+                document.getElementById("cookie-banner").style.display = "none"; // Masquer le bandeau
+            });
+        }
+    });
+    
+    
+});
+
+
+

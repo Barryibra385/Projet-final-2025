@@ -5,7 +5,7 @@
     <link rel="icon" href="img/logo.png" type="image/icon">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="css/style.css">
-  <script src="../Projet_final_2025/js/script.js" defer></script>
+  <script src="js/script.js" defer></script>
     <title>KAIBON</title>
 </head>
 <body>
@@ -13,7 +13,7 @@
     <header>
         <nav class="navbar">
             <div class="logo">
-                <a href="index.html"><img src="../Projet_final_2025/img/logo.png" alt="Logo KAIBON"></a>
+                <a href="index.html"><img src="img/logo.png" alt="Logo KAIBON"></a>
             </div>
             <button class="burger-menu" aria-label="Menu">
                 <span></span>
@@ -25,25 +25,26 @@
                 <div class="dropdown">
                     <a href="catalogues.html" class="dropdown-toggle">Catalogues</a>
                     <div class="dropdown-menu">
-                        <a href="types_de_biens.html">Nos différents types de biens</a>
+                        <a href="types_de_biens.html">Nos types de biens</a>
                         <a href="maisons_duplex.html">Nos maisons et duplex</a>
                         <a href="appartements_villas.html">Nos appartements et villas</a>
                         <a href="chambres_studios.html">Nos chambres et studios</a>
                         
                     </div>
                 </div>
-                <a href="contact.html">Contact</a>
-                <a href="a_propos.html">À propos</a>
                 <a href="hote.html">Devenez hôte</a>
+                <a href="reservation.html">Réserver</a>
+                <a href="a_propos.html">À propos</a>
+                <a href="contact.html">Contact</a>
                 <a href="inscription.html">S'inscrire</a>
                 <a href="connexion.html">Se connecter</a>
-                <a href="reservation.html">Réserver</a>
+                
             </div>
         </nav>
     </header>
 
     <!-- Hero Section -->
-    <section class="hero" style="background-image: url(../Projet_final_2025/img/image_fond_appart_villa.jpg)!important">
+    <section class="hero" style="background-image: url(img/image_fond_appart_villa.jpg)!important">
         <h1>Maison, Appartement, Chambre,tout ce qu’il vous faut pour vos vacances en guinée</h1>
         <div class="search-bar">
             <input type="text" placeholder="Recherchez parmi les articles">
@@ -66,16 +67,16 @@
         </div>
         <div class="card-container">
             <div class="card">
-                <img src="../Projet_final_2025/img/appart_villa1.jpg" alt="Maison1">
+                <img src="img/appart_villa1.jpg" alt="Maison1">
                 <p>Charmante maison entièrement équipée avec terrasse et jardin 95 m² Maison de vacances ∙ 5 chambres ∙ 8 personnes</p>
             </div>
             <div class="card">
-                <img src="../Projet_final_2025/img/appart_villa2.jpg" alt="Maison2">
+                <img src="img/appart_villa2.jpg" alt="Maison2">
                
                 <p>Maison de vacances avec terrasse, piscine privée et barbecue 85 m²  ∙ 4 chambres ∙ 4 personnes</p>
             </div>
             <div class="card">
-                <img src="../Projet_final_2025/img/appart_villa3.jpg" alt="Duplexe">
+                <img src="img/appart_villa3.jpg" alt="Duplexe">
               
                 <pduplexe>pduplexe> entier • 6 chambres • 2 salons • 1 salle de bains • 1 cuisine • 55m²</p>
             </div>
@@ -87,11 +88,11 @@
         <h2>Nos meilleurs location de vacances</h2>
         <div class="gallery">
             <div>
-                <img src="../Projet_final_2025/img/appart_villa4.jpg" alt="Appartement1" >
+                <img src="img/appart_villa4.jpg" alt="Appartement1" >
                 <p>harmant appartement de vacances convivial et familial avec terrasse, barbecue et jardin | Avec animaux admis</p>
             </div>
             <div>
-                <img src="../Projet_final_2025/img/appart_villa5.jpg" alt="Appartement2">
+                <img src="img/appart_villa5.jpg" alt="Appartement2">
                 <p>Appartement avec terrasse
                     35 m², 2 chambres
                     max. 4 personnes
@@ -99,7 +100,7 @@
                     1 salle de bain</p>
             </div>
             <div>
-                <img src="../Projet_final_2025/img/appart_villa6.jpg" alt="Villas">
+                <img src="img/appart_villa6.jpg" alt="Villas">
                 <p>Maison de vacances adapté aux familles avec barbecue, sauna et terrasse |
                     150 m² Maison de vacances</p>
             </div>
@@ -111,16 +112,16 @@
         <h2>Top destinations à travers la Guinée</h2>
         <div class="gallery">
             <div>
-                <img src="../Projet_final_2025/img/villa_appart1.jpg" alt="Chambre1">
+                <img src="img/villa_appart1.jpg" alt="Chambre1">
                 <p>Magnifique chambre entièrement meublée 1 lit double pour 2 pers max 
                     1 salle de bain</p>
             </div>
             <div>
-                <img src="../Projet_final_2025/img/villa_appart2_.jpg" alt="Chambre2">
+                <img src="img/villa_appart2_.jpg" alt="Chambre2">
                 <p>Charmante chambre de vacances convivial e bien meubléel avec terrasse,  et jardin | Avec animaux admis</p>
             </div>
             <div>
-                <img src="../Projet_final_2025/img/villa_appart3.jpg" alt="Studio">
+                <img src="img/villa_appart3.jpg" alt="Studio">
                 <p>un formidable studio meublé idéal pour un couple  avec deux lits séparés,une cuisine, une salle de bain .</p>
             </div>
         </div>
@@ -129,10 +130,21 @@
         <button ><a href="reservation.html">Réservez maintenant</a> </button>
       </div> 
 
+      <section>
+        <div id="meteo">
+            <h1>Météo actuelle:</h1>
+            <p id="localisation">Chargement...</p>
+            <p id="temperature">Température: ...</p>
+            <p id="description">Description: ...</p>
+            <p id="humidity">Humidité: ...</p>
+        </div>  
+    </section>
+
+
 <footer class="footer">
     <div class="footer-content">
         <div class="footer-logo">
-            <a href="index.html"><img src="../Projet_final_2025/img/logo.png" alt="Logo KAIBON"></a>
+            <a href="index.html"><img src="img/logo.png" alt="Logo KAIBON"></a>
             <address>
                 5 Allée du Foehn<br>
                 67540 Ostwald
@@ -153,9 +165,9 @@
         </div>
         <div class="footer-social">
             <h4>Nous suivre sur les réseaux</h4>
-            <a href="#"><img src="../Projet_final_2025/icons/twitter-x.svg" alt="Twitter"></a>
-            <a href="#"><img src="../Projet_final_2025/icons/instagram.svg" alt="Instagram"></a>
-            <a href="#"><img src="../Projet_final_2025/icons/facebook.svg" alt="Facebook"></a>
+            <a href="#"><img src="icons/twitter-x.svg" alt="Twitter"></a>
+            <a href="#"><img src="icons/instagram.svg" alt="Instagram"></a>
+            <a href="#"><img src="icons/facebook.svg" alt="Facebook"></a>
         </div>
     </div>
     <div class="footer-bottom">

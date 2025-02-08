@@ -1,0 +1,21 @@
+[
+    {
+      "id": 1,
+      "nom": "Petit-déjeuner",
+      "prix": "10€",
+      "description": "Petit-déjeuner complet livré chaque matin."
+    },
+    {
+        "id": 3,
+        "nom": "Ménage",
+        "prix": "30€",
+        "description": "Service de nettoyage après départ."
+      },
+      {
+        "id": 4,
+        "nom": "Parking",
+        "prix": "15€/jour",
+        "description": "Place de parking privée sécurisée."
+      }
+   
+]
